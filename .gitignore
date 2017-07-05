@@ -1,0 +1,9 @@
+*.pdf
+*.root
+
+.*
+!.gitignore
+
+pdfs/
+
+distributions
