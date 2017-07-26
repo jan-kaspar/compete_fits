@@ -1,12 +1,6 @@
 #include "Model.h"
 
-#include "Model_RPdPL2_20.h"
-#include "Model_RPdPL2u_17.h"
-#include "Model_RPdPL2u_19.h"
-#include "Model_RPdPqcL2u_16.h"
-
-#include "Model_RqcRcLqc_12.h"
-#include "Model_RqcRcL2qc_12.h"
+#include "all_models.h"
 
 #include <vector>
 
@@ -25,9 +19,25 @@ int main()
 	models.push_back(new Model_RPdPL2u_17);
 	models.push_back(new Model_RPdPL2u_19);
 	models.push_back(new Model_RPdPqcL2u_16);
-
-	models.push_back(new Model_RqcRcLqc_12);
 	models.push_back(new Model_RqcRcL2qc_12);
+	models.push_back(new Model_RqcRcLqc_12);
+	models.push_back(new Model_RqcRLqc_14);
+	models.push_back(new Model_RRcdPL2u_15);
+	models.push_back(new Model_RRcdPqcL2u_14);
+	models.push_back(new Model_RRcL2qc_15);
+	models.push_back(new Model_RRcLqc_15);
+	models.push_back(new Model_RRcPL_19);
+	models.push_back(new Model_RRL_18);
+	models.push_back(new Model_RRL_19);
+	models.push_back(new Model_RRL2_18);
+	models.push_back(new Model_RRL2qc_17);
+	models.push_back(new Model_RRLqc_17);
+	models.push_back(new Model_RRPEu_19);
+	models.push_back(new Model_RRPL_21);
+	models.push_back(new Model_RRPL2_20);
+	models.push_back(new Model_RRPL2qc_18);
+	models.push_back(new Model_RRPL2u_19);
+	models.push_back(new Model_RRPL2u_21);
 
 	// prepare output file
 	TFile *f_out = TFile::Open("distributions.root", "recreate");
