@@ -1,8 +1,12 @@
-all: distributions
+all: distributions uncertainty_RRPL2u_21
 
 distributions: Model.h all_models.h distributions.cc
 	g++ --std=c++11 -Wall `root-config --libs` -lMinuit `root-config --cflags` \
 		distributions.cc -o distributions
+
+uncertainty_RRPL2u_21: Model.h all_models.h uncertainty_RRPL2u_21.cc stat.h
+	g++ --std=c++11 -Wall `root-config --libs` -lMinuit `root-config --cflags` \
+		uncertainty_RRPL2u_21.cc -o uncertainty_RRPL2u_21
 
 distributions: Model_RPdPL2_20.h
 distributions: Model_RPdPL2u_17.h
@@ -27,3 +31,5 @@ distributions: Model_RRPL2_20.h
 distributions: Model_RRPL2qc_18.h
 distributions: Model_RRPL2u_19.h
 distributions: Model_RRPL2u_21.h
+
+uncertainty_RRPL2u_21 : Model_RRPL2u_21.h
