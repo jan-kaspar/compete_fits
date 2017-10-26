@@ -56,7 +56,7 @@ int main()
 		TGraph *g_rho_p_ap = new TGraph(); g_rho_p_ap->SetName("g_rho_p_ap");
 
 		// loop over sqrt_s (GeV)
-		for (double sqrt_s = 10; sqrt_s < 1E5; sqrt_s *= 1.1)
+		for (double sqrt_s = 10; sqrt_s < 2E5; sqrt_s *= 1.05)
 		{
 			const double s = sqrt_s * sqrt_s;
 
