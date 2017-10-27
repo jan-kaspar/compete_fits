@@ -90,7 +90,7 @@ int main()
 	vector<Stat> stat_rho_p_p(values_W.size(), Stat(1));
 	vector<Stat> stat_rho_p_ap(values_W.size(), Stat(1));
 	
-	for (unsigned int ci = 0; ci < 10000; ci++)
+	for (unsigned int ci = 0; ci < 100000; ci++)
 	{
 		// generate model parameter errors
 		TVectorD de(7);
