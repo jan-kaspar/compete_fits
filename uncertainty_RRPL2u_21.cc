@@ -169,8 +169,8 @@ int main()
 
 		gs_si_p_p.Fill(W, model->si_p_p(s), stat_si_p_p[si].GetMean(0), stat_si_p_p[si].GetStdDev(0));
 		gs_si_p_ap.Fill(W, model->si_p_ap(s), stat_si_p_ap[si].GetMean(0), stat_si_p_ap[si].GetStdDev(0));
-		gs_rho_p_p.Fill(W, model->si_p_p(s), stat_rho_p_p[si].GetMean(0), stat_rho_p_p[si].GetStdDev(0));
-		gs_rho_p_ap.Fill(W, model->si_p_ap(s), stat_rho_p_ap[si].GetMean(0), stat_rho_p_ap[si].GetStdDev(0));
+		gs_rho_p_p.Fill(W, model->rho_p_p(s), stat_rho_p_p[si].GetMean(0), stat_rho_p_p[si].GetStdDev(0));
+		gs_rho_p_ap.Fill(W, model->rho_p_ap(s), stat_rho_p_ap[si].GetMean(0), stat_rho_p_ap[si].GetStdDev(0));
 	}
 
 	gDirectory = f_out->mkdir("si_p_p");
