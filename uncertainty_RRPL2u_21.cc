@@ -126,78 +126,64 @@ int main()
 	}
 
 	// make graphs
-	TGraph *g_mean_si_p_p = new TGraph();
-	TGraph *g_stddev_si_p_p = new TGraph();
-	TGraph *g_band_up_si_p_p = new TGraph();
-	TGraph *g_band_dw_si_p_p = new TGraph();
+	struct GraphSet
+	{
+		TGraph *g_cen_val, *g_unc_mean, *g_unc_stddev, *g_band_up, *g_band_dw;
 
-	TGraph *g_mean_si_p_ap = new TGraph();
-	TGraph *g_stddev_si_p_ap = new TGraph();
-	TGraph *g_band_up_si_p_ap = new TGraph();
-	TGraph *g_band_dw_si_p_ap = new TGraph();
+		GraphSet()
+		{
+			g_cen_val = new TGraph();
+			g_unc_mean = new TGraph();
+			g_unc_stddev = new TGraph();
+			g_band_up = new TGraph(); g_band_up->SetLineColor(2);
+			g_band_dw = new TGraph(); g_band_dw->SetLineColor(2);
+		}
 
-	TGraph *g_mean_rho_p_p = new TGraph();
-	TGraph *g_stddev_rho_p_p = new TGraph();
-	TGraph *g_band_up_rho_p_p = new TGraph();
-	TGraph *g_band_dw_rho_p_p = new TGraph();
+		void Fill(double W, double cv, double mean, double stddev)
+		{
+			int idx = g_cen_val->GetN();
 
-	TGraph *g_mean_rho_p_ap = new TGraph();
-	TGraph *g_stddev_rho_p_ap = new TGraph();
-	TGraph *g_band_up_rho_p_ap = new TGraph();
-	TGraph *g_band_dw_rho_p_ap = new TGraph();
+			g_cen_val->SetPoint(idx, W, cv);
+			g_unc_mean->SetPoint(idx, W, mean);
+			g_unc_stddev->SetPoint(idx, W, stddev);
+			g_band_up->SetPoint(idx, W, cv + mean + stddev);
+			g_band_dw->SetPoint(idx, W, cv + mean - stddev);
+		}
+
+		void Write() const
+		{
+			g_cen_val->Write("g_cen_val");
+			g_unc_mean->Write("g_unc_mean");
+			g_unc_stddev->Write("g_unc_stddev");
+			g_band_up->Write("g_band_up");
+			g_band_dw->Write("g_band_dw");
+		}
+	};
+
+	GraphSet gs_si_p_p, gs_si_p_ap, gs_rho_p_p, gs_rho_p_ap;
 
 	for (unsigned int si = 0; si < values_W.size(); si++)
 	{
 		const double W = values_W[si];
 		const double s = values_W[si] * values_W[si];
 
-		const double si_p_p = model->si_p_p(s);
-		const double si_p_ap = model->si_p_ap(s);
-		const double rho_p_p = model->rho_p_p(s);
-		const double rho_p_ap = model->rho_p_ap(s);
-
-		int idx = g_mean_si_p_p->GetN();
-
-		g_mean_si_p_p->SetPoint(idx, W, stat_si_p_p[si].GetMean(0));
-		g_stddev_si_p_p->SetPoint(idx, W, stat_si_p_p[si].GetStdDev(0));
-		g_band_up_si_p_p->SetPoint(idx, W, si_p_p + stat_si_p_p[si].GetMean(0) + stat_si_p_p[si].GetStdDev(0));
-		g_band_dw_si_p_p->SetPoint(idx, W, si_p_p + stat_si_p_p[si].GetMean(0) - stat_si_p_p[si].GetStdDev(0));
-
-		g_mean_si_p_ap->SetPoint(idx, W, stat_si_p_ap[si].GetMean(0));
-		g_stddev_si_p_ap->SetPoint(idx, W, stat_si_p_ap[si].GetStdDev(0));
-		g_band_up_si_p_ap->SetPoint(idx, W, si_p_ap + stat_si_p_ap[si].GetMean(0) + stat_si_p_ap[si].GetStdDev(0));
-		g_band_dw_si_p_ap->SetPoint(idx, W, si_p_ap + stat_si_p_ap[si].GetMean(0) - stat_si_p_ap[si].GetStdDev(0));
-
-		g_mean_rho_p_p->SetPoint(idx, W, stat_rho_p_p[si].GetMean(0));
-		g_stddev_rho_p_p->SetPoint(idx, W, stat_rho_p_p[si].GetStdDev(0));
-		g_band_up_rho_p_p->SetPoint(idx, W, rho_p_p + stat_rho_p_p[si].GetMean(0) + stat_rho_p_p[si].GetStdDev(0));
-		g_band_dw_rho_p_p->SetPoint(idx, W, rho_p_p + stat_rho_p_p[si].GetMean(0) - stat_rho_p_p[si].GetStdDev(0));
-
-		g_mean_rho_p_ap->SetPoint(idx, W, stat_rho_p_ap[si].GetMean(0));
-		g_stddev_rho_p_ap->SetPoint(idx, W, stat_rho_p_ap[si].GetStdDev(0));
-		g_band_up_rho_p_ap->SetPoint(idx, W, rho_p_ap + stat_rho_p_ap[si].GetMean(0) + stat_rho_p_ap[si].GetStdDev(0));
-		g_band_dw_rho_p_ap->SetPoint(idx, W, rho_p_ap + stat_rho_p_ap[si].GetMean(0) - stat_rho_p_ap[si].GetStdDev(0));
+		gs_si_p_p.Fill(W, model->si_p_p(s), stat_si_p_p[si].GetMean(0), stat_si_p_p[si].GetStdDev(0));
+		gs_si_p_ap.Fill(W, model->si_p_ap(s), stat_si_p_ap[si].GetMean(0), stat_si_p_ap[si].GetStdDev(0));
+		gs_rho_p_p.Fill(W, model->si_p_p(s), stat_rho_p_p[si].GetMean(0), stat_rho_p_p[si].GetStdDev(0));
+		gs_rho_p_ap.Fill(W, model->si_p_ap(s), stat_rho_p_ap[si].GetMean(0), stat_rho_p_ap[si].GetStdDev(0));
 	}
 
-	g_mean_si_p_p->Write("g_mean_si_p_p");
-	g_stddev_si_p_p->Write("g_stddev_si_p_p");
-	g_band_up_si_p_p->Write("g_band_up_si_p_p");
-	g_band_dw_si_p_p->Write("g_band_dw_si_p_p");
+	gDirectory = f_out->mkdir("si_p_p");
+	gs_si_p_p.Write();
 
-	g_mean_si_p_ap->Write("g_mean_si_p_ap");
-	g_stddev_si_p_ap->Write("g_stddev_si_p_ap");
-	g_band_up_si_p_ap->Write("g_band_up_si_p_ap");
-	g_band_dw_si_p_ap->Write("g_band_dw_si_p_ap");
+	gDirectory = f_out->mkdir("si_p_ap");
+	gs_si_p_ap.Write();
 
-	g_mean_rho_p_p->Write("g_mean_rho_p_p");
-	g_stddev_rho_p_p->Write("g_stddev_rho_p_p");
-	g_band_up_rho_p_p->Write("g_band_up_rho_p_p");
-	g_band_dw_rho_p_p->Write("g_band_dw_rho_p_p");
+	gDirectory = f_out->mkdir("rho_p_p");
+	gs_rho_p_p.Write();
 
-	g_mean_rho_p_ap->Write("g_mean_rho_p_ap");
-	g_stddev_rho_p_ap->Write("g_stddev_rho_p_ap");
-	g_band_up_rho_p_ap->Write("g_band_up_rho_p_ap");
-	g_band_dw_rho_p_ap->Write("g_band_dw_rho_p_ap");
+	gDirectory = f_out->mkdir("rho_p_ap");
+	gs_rho_p_ap.Write();
 
 	// cross-check
 	TGraph *g_stddev_check_si_p_p = new TGraph();
@@ -217,6 +203,7 @@ int main()
 		g_stddev_check_rho_p_p->SetPoint(idx, W, unc_rho_p_p);
 	}
 
+	gDirectory = f_out->mkdir("check");
 	g_stddev_check_si_p_p->SetLineColor(2);
 	g_stddev_check_si_p_p->Write("g_stddev_check_si_p_p");
 
