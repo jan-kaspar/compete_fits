@@ -9,6 +9,7 @@ class Model
 	public:
 
 	std::string name;
+	std::string label;
 	double ranking;
 
 	virtual double si_p_p(double s) const = 0;

@@ -14,6 +14,7 @@ class Model_RRcLqc_15 : public Model
 	Model_RRcLqc_15()
 	{
 		name = "Model_RRcLqc_15";
+		label = "RR_c L^{qc}\\ (15)";
 	}
 
 	double si_p_p(double s) const override

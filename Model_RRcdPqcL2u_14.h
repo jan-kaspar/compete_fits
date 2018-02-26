@@ -14,6 +14,7 @@ class Model_RRcdPqcL2u_14 : public Model
 	Model_RRcdPqcL2u_14()
 	{
 		name = "Model_RRcdPqcL2u_14";
+		label = "(RR_c)^d P^{qc} L2_u\\ (14)";
 	}
 
 	double si_p_p(double s) const override
@@ -24,18 +25,17 @@ class Model_RRcdPqcL2u_14 : public Model
 	double si_p_ap(double s) const override
 	{
 		return 9.*Z + B * pow(log(s/s0), 2) + (Y_1_pp + 5.*Y_2_pip) * pow(s, -eta);
-		return 0;
 	}
 
 	double rho_p_p(double s) const override
 	{
-		double rho_si = M_PI * B * log(s/s0) - Y_1_pp * pow(s, -eta) / tan((1.-eta)/2*M_PI) - 5.*Y_2_pip * pow(s, -eta) * tan((1.-eta)/2*M_PI);
+		double rho_si = M_PI * B * log(s/s0) - Y_1_pp * pow(s, -eta) / tan((1.-eta)/2.*M_PI) - 5.*Y_2_pip * pow(s, -eta) * tan((1.-eta)/2.*M_PI);
 		return rho_si / si_p_p(s);
 	}
 
 	double rho_p_ap(double s) const override
 	{
-		double rho_si = M_PI * B * log(s/s0) - Y_1_pp * pow(s, -eta) / tan((1.-eta)/2*M_PI) + 5.*Y_2_pip * pow(s, -eta) * tan((1.-eta)/2*M_PI);
+		double rho_si = M_PI * B * log(s/s0) - Y_1_pp * pow(s, -eta) / tan((1.-eta)/2.*M_PI) + 5.*Y_2_pip * pow(s, -eta) * tan((1.-eta)/2.*M_PI);
 		return rho_si / si_p_ap(s);
 	}
 };

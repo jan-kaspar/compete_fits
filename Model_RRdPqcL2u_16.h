@@ -1,6 +1,6 @@
 #include "Model.h"
 
-class Model_RPdPqcL2u_16 : public Model
+class Model_RRdPqcL2u_16 : public Model
 {
 	public:
 
@@ -11,9 +11,10 @@ class Model_RPdPqcL2u_16 : public Model
 	double Y_2_pp = 34.157737;
 	double eta = 0.55062892;
 
-	Model_RPdPqcL2u_16()
+	Model_RRdPqcL2u_16()
 	{
-		name = "Model_RPdPqcL2u_16";
+		name = "Model_RRdPqcL2u_16";
+		label = "(RR)^d P^{qc} L2_u\\ (16)";
 	}
 
 	double si_p_p(double s) const override
@@ -28,13 +29,13 @@ class Model_RPdPqcL2u_16 : public Model
 
 	double rho_p_p(double s) const override
 	{
-		double rho_si = M_PI * B * log(s/s0) - Y_1_pp * pow(s, -eta) / tan((1.-eta)/2*M_PI) - Y_2_pp * pow(s, -eta) * tan((1.-eta)/2*M_PI);
+		double rho_si = M_PI * B * log(s/s0) - Y_1_pp * pow(s, -eta) / tan((1.-eta)/2.*M_PI) - Y_2_pp * pow(s, -eta) * tan((1.-eta)/2.*M_PI);
 		return rho_si / si_p_p(s);
 	}
 
 	double rho_p_ap(double s) const override
 	{
-		double rho_si = M_PI * B * log(s/s0) - Y_1_pp * pow(s, -eta) / tan((1.-eta)/2*M_PI) + Y_2_pp * pow(s, -eta) * tan((1.-eta)/2*M_PI);
+		double rho_si = M_PI * B * log(s/s0) - Y_1_pp * pow(s, -eta) / tan((1.-eta)/2.*M_PI) + Y_2_pp * pow(s, -eta) * tan((1.-eta)/2.*M_PI);
 		return rho_si / si_p_ap(s);
 	}
 };

@@ -15,6 +15,7 @@ class Model_RRPEu_19 : public Model
 	Model_RRPEu_19()
 	{
 		name = "Model_RRPEu_19";
+		label = "RR PE_u\\ (19)";
 	}
 
 	double si_p_p(double s) const override

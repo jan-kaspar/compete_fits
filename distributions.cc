@@ -15,10 +15,10 @@ int main()
 {
 	// define models
 	vector<Model *> models;
-	models.push_back(new Model_RPdPL2_20);
-	models.push_back(new Model_RPdPL2u_17);
-	models.push_back(new Model_RPdPL2u_19);
-	models.push_back(new Model_RPdPqcL2u_16);
+	models.push_back(new Model_RRdPL2_20);
+	models.push_back(new Model_RRdPL2u_17);
+	models.push_back(new Model_RRdPL2u_19);
+	models.push_back(new Model_RRdPqcL2u_16);
 	models.push_back(new Model_RqcRcL2qc_12);
 	models.push_back(new Model_RqcRcLqc_12);
 	models.push_back(new Model_RqcRLqc_14);
@@ -50,6 +50,10 @@ int main()
 		// prepare graphs
 		gDirectory = f_out->mkdir(model->name.c_str());
 
+		TGraph *g_label = new TGraph();
+		g_label->SetName("g_label");
+		g_label->SetTitle(model->label.c_str());
+
 		TGraph *g_si_p_p = new TGraph(); g_si_p_p->SetName("g_si_p_p");
 		TGraph *g_si_p_ap = new TGraph(); g_si_p_ap->SetName("g_si_p_ap");
 		TGraph *g_rho_p_p = new TGraph(); g_rho_p_p->SetName("g_rho_p_p");
@@ -68,6 +72,8 @@ int main()
 		}
 
 		// save graphs
+		g_label->Write();
+
 		g_si_p_p->Write();
 		g_si_p_ap->Write();
 		g_rho_p_p->Write();

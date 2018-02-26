@@ -14,6 +14,7 @@ class Model_RRPL_21 : public Model
 	Model_RRPL_21()
 	{
 		name = "Model_RRPL_21";
+		label = "RR PL\\ (21)";
 	}
 
 	double si_p_p(double s) const override
@@ -28,13 +29,13 @@ class Model_RRPL_21 : public Model
 
 	double rho_p_p(double s) const override
 	{
-		double rho_si = M_PI*B_pp/2. - Y_1_pp * pow(s, -eta_1) / tan((1.-eta_1)/2*M_PI) - Y_2_pp * pow(s, -eta_2) * tan((1.-eta_2)/2*M_PI);
+		double rho_si = M_PI*B_pp/2. - Y_1_pp * pow(s, -eta_1) / tan((1.-eta_1)/2.*M_PI) - Y_2_pp * pow(s, -eta_2) * tan((1.-eta_2)/2.*M_PI);
 		return rho_si / si_p_p(s);
 	}
 
 	double rho_p_ap(double s) const override
 	{
-		double rho_si = M_PI*B_pp/2. - Y_1_pp * pow(s, -eta_1) / tan((1.-eta_1)/2*M_PI) + Y_2_pp * pow(s, -eta_2) * tan((1.-eta_2)/2*M_PI);
+		double rho_si = M_PI*B_pp/2. - Y_1_pp * pow(s, -eta_1) / tan((1.-eta_1)/2.*M_PI) + Y_2_pp * pow(s, -eta_2) * tan((1.-eta_2)/2.*M_PI);
 		return rho_si / si_p_ap(s);
 	}
 };

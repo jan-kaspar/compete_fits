@@ -8,10 +8,10 @@ uncertainty_RRPL2u_21: Model.h all_models.h uncertainty_RRPL2u_21.cc stat.h
 	g++ --std=c++11 -Wall `root-config --libs` -lMinuit `root-config --cflags` \
 		uncertainty_RRPL2u_21.cc -o uncertainty_RRPL2u_21
 
-distributions: Model_RPdPL2_20.h
-distributions: Model_RPdPL2u_17.h
-distributions: Model_RPdPL2u_19.h
-distributions: Model_RPdPqcL2u_16.h
+distributions: Model_RRdPL2_20.h
+distributions: Model_RRdPL2u_17.h
+distributions: Model_RRdPL2u_19.h
+distributions: Model_RRdPqcL2u_16.h
 distributions: Model_RqcRcL2qc_12.h
 distributions: Model_RqcRcLqc_12.h
 distributions: Model_RqcRLqc_14.h
