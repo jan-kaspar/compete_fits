@@ -28,7 +28,7 @@ int main()
 	models.push_back(new Model_RRcLqc_15);
 	models.push_back(new Model_RRcPL_19);
 	models.push_back(new Model_RRL_18);
-	models.push_back(new Model_RRL_19);
+	models.push_back(new Model_RRLnf_19);
 	models.push_back(new Model_RRL2_18);
 	models.push_back(new Model_RRL2qc_17);
 	models.push_back(new Model_RRLqc_17);
@@ -37,7 +37,7 @@ int main()
 	models.push_back(new Model_RRPL2_20);
 	models.push_back(new Model_RRPL2qc_18);
 	models.push_back(new Model_RRPL2u_19);
-	models.push_back(new Model_RRPL2u_21);
+	models.push_back(new Model_RRPnfL2u_21);
 
 	// prepare output file
 	TFile *f_out = TFile::Open("distributions.root", "recreate");

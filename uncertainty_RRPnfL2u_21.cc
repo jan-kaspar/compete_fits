@@ -20,10 +20,10 @@ using namespace std;
 int main()
 {
 	// model with central values
-	Model_RRPL2u_21 *model = new Model_RRPL2u_21;
+	Model_RRPnfL2u_21 *model = new Model_RRPnfL2u_21;
 
 	// prepare output file
-	TFile *f_out = TFile::Open("uncertainty_RRPL2u_21.root", "recreate");
+	TFile *f_out = TFile::Open("uncertainty_RRPnfL2u_21.root", "recreate");
 
 	// define grid of s values
 	vector<double> values_W;
@@ -99,7 +99,7 @@ int main()
 		TVectorD de_P = gen_mat * de;
 
 		// get model with biased parameters;
-		Model_RRPL2u_21 *model_bias = new Model_RRPL2u_21;
+		Model_RRPnfL2u_21 *model_bias = new Model_RRPnfL2u_21;
 		model_bias->Z_pp += de_P(0);
 		model_bias->B += de_P(1);
 		model_bias->s0 += de_P(2);

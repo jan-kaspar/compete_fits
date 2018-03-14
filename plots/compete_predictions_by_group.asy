@@ -6,10 +6,10 @@ string f = "../distributions.root";
 string models[];
 pen m_pens[];
 
-models.push("Model_RPdPL2_20"); m_pens.push(blue);
-models.push("Model_RPdPL2u_17"); m_pens.push(blue);
-models.push("Model_RPdPL2u_19"); m_pens.push(blue);
-models.push("Model_RPdPqcL2u_16"); m_pens.push(blue);
+models.push("Model_RRdPL2_20"); m_pens.push(blue);
+models.push("Model_RRdPL2u_17"); m_pens.push(blue);
+models.push("Model_RRdPL2u_19"); m_pens.push(blue);
+models.push("Model_RRdPqcL2u_16"); m_pens.push(blue);
 models.push("Model_RqcRcL2qc_12"); m_pens.push(magenta);
 models.push("Model_RqcRcLqc_12"); m_pens.push(heavygreen);
 models.push("Model_RqcRLqc_14"); m_pens.push(heavygreen);
@@ -19,7 +19,7 @@ models.push("Model_RRcL2qc_15"); m_pens.push(magenta);
 models.push("Model_RRcLqc_15"); m_pens.push(heavygreen);
 models.push("Model_RRcPL_19"); m_pens.push(heavygreen);
 models.push("Model_RRL_18"); m_pens.push(heavygreen);
-models.push("Model_RRL_19"); m_pens.push(heavygreen);
+models.push("Model_RRLnf_19"); m_pens.push(heavygreen);
 models.push("Model_RRL2_18"); m_pens.push(magenta);
 models.push("Model_RRL2qc_17"); m_pens.push(magenta);
 models.push("Model_RRLqc_17"); m_pens.push(heavygreen);
@@ -28,7 +28,7 @@ models.push("Model_RRPL_21"); m_pens.push(heavygreen);
 models.push("Model_RRPL2_20"); m_pens.push(heavygreen);
 models.push("Model_RRPL2qc_18"); m_pens.push(heavygreen);
 models.push("Model_RRPL2u_19"); m_pens.push(blue);
-models.push("Model_RRPL2u_21"); m_pens.push(blue);
+models.push("Model_RRPnfL2u_21"); m_pens.push(blue);
 
 xSizeDef = 10cm;
 ySizeDef = xSizeDef * 2/3;
@@ -44,7 +44,9 @@ void DrawAll(string obj)
 {
 	for (int mi : models.keys)
 	{
-		draw(RootGetObject(f, models[mi] + "/" + obj), m_pens[mi], replace(models[mi], "_", "\_"));
+		RootObject obj_label = RootGetObject(f, models[mi] + "/g_label");
+		string l = obj_label.sExec("GetTitle");
+		draw(RootGetObject(f, models[mi] + "/" + obj), m_pens[mi], "$\rm " + l + "$");
 	}
 }
 

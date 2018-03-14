@@ -1,6 +1,6 @@
 #include "Model.h"
 
-class Model_RRL_19 : public Model
+class Model_RRLnf_19 : public Model
 {
 	public:
 
@@ -11,10 +11,10 @@ class Model_RRL_19 : public Model
 	double eta_1 = 0.20882981;
 	double eta_2 = 0.54453128;
 
-	Model_RRL_19()
+	Model_RRLnf_19()
 	{
-		name = "Model_RRL_19";
-		label = "RR L\\ (19)";
+		name = "Model_RRLnf_19";
+		label = "RR L_{nf}\\ (19)";
 	}
 
 	double si_p_p(double s) const override
