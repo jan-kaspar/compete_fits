@@ -4,18 +4,68 @@ class Model_RRPEu_19 : public Model
 {
 	public:
 
-	double Z_pp = 4.1824033;
-	double X = 15.685953;
-	double ep = 0.10134777;
-	double Y_1_pp = 57.450783;
-	double Y_2_pp = 33.468752;
-	double eta_1 = 0.34309186;
-	double eta_2 = 0.54487001;
+	double Z_pp;
+	double X;
+	double ep;
+	double Y_1_pp;
+	double Y_2_pp;
+	double eta_1;
+	double eta_2;
+
+	virtual void SetDefaultParameterValues()
+	{
+		Z_pp = 4.1824033;
+		X = 15.685953;
+		ep = 0.10134777;
+		Y_1_pp = 57.450783;
+		Y_2_pp = 33.468752;
+		eta_1 = 0.34309186;
+		eta_2 = 0.54487001;
+	}
 
 	Model_RRPEu_19()
 	{
 		name = "Model_RRPEu_19";
 		label = "RR PE_u\\ (19)";
+
+		SetDefaultParameterValues();
+
+		par_unc.ResizeTo(7);
+ 
+		par_unc(0) = 0;	// Z_pp
+		par_unc(1) = 0;	// X
+		par_unc(2) = 0;	// ep
+		par_unc(3) = 0;	// Y_1_pp
+		par_unc(4) = 0;	// Y_2_pp
+		par_unc(5) = 0;	// eta_1
+		par_unc(6) = 0;	// eta_2
+
+		double corr_data[] = {
+			1, 0, 0, 0, 0, 0, 0,
+			0, 1, 0, 0, 0, 0, 0,
+			0, 0, 1, 0, 0, 0, 0,
+			0, 0, 0, 1, 0, 0, 0,
+			0, 0, 0, 0, 1, 0, 0,
+			0, 0, 0, 0, 0, 1, 0,
+			0, 0, 0, 0, 0, 0, 1
+		};
+		par_unc_corr.ResizeTo(par_unc.GetNrows(), par_unc.GetNrows());
+		par_unc_corr.SetMatrixArray(corr_data);
+
+		PrepareParameterErrorGeneratorMatrix();
+	}
+
+	virtual bool ApplyParameterChange(const TVectorD &de) override
+	{
+		Z_pp   += de(0);
+		X      += de(1);
+		ep     += de(2);
+		Y_1_pp += de(3);
+		Y_2_pp += de(4);
+		eta_1  += de(5);
+		eta_2  += de(6);
+
+		return true;
 	}
 
 	double si_p_p(double s) const override
