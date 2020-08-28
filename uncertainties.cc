@@ -16,8 +16,7 @@ using namespace std;
 void ProcessOneModel(Model *model)
 {
 	// settings
-	// TODO: 1E5
-	unsigned int n_error_samples = (unsigned int) 1E3;
+	unsigned int n_error_samples = (unsigned int) 1E4;
 
 	unsigned int si_for_corr = 194;
 
@@ -181,8 +180,8 @@ int main()
 	//models.push_back(new Model_RRcdPL2u_15);
 	//models.push_back(new Model_RRcdPqcL2u_14);
 	models.push_back(new Model_RRcL2qc_15);
-	//models.push_back(new Model_RRcLqc_15);
-	//models.push_back(new Model_RRcPL_19);
+	models.push_back(new Model_RRcLqc_15);
+	models.push_back(new Model_RRcPL_19);
 	//models.push_back(new Model_RRL_18);
 	//models.push_back(new Model_RRLnf_19);
 	models.push_back(new Model_RRL2_18);
@@ -191,7 +190,7 @@ int main()
 	//models.push_back(new Model_RRPEu_19);
 	//models.push_back(new Model_RRPL_21);
 	//models.push_back(new Model_RRPL2_20);
-	//models.push_back(new Model_RRPL2qc_18);
+	models.push_back(new Model_RRPL2qc_18);
 	//models.push_back(new Model_RRPL2u_19);
 	models.push_back(new Model_RRPnfL2u_21);
 

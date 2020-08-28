@@ -29,21 +29,24 @@ class Model_RRcLqc_15 : public Model
 		SetDefaultParameterValues();
 
 		par_unc.ResizeTo(6);
- 
-		par_unc(0) = 0;	// B
-		par_unc(1) = 0;	// s0
-		par_unc(2) = 0;	// Y_1_pp
-		par_unc(3) = 0;	// Y_2_pip
-		par_unc(4) = 0;	// eta_1
-		par_unc(5) = 0;	// eta_2  
+
+		par_unc(0) = 0.033304788;	// B
+		par_unc(1) = 54.491416;	// s0
+		par_unc(2) = 3.8635402;	// Y_1_pp
+		par_unc(3) = 0.32981887;	// Y_2_pip
+		par_unc(4) = 0.011453586;	// eta_1
+		par_unc(5) = 0.0095010532;	// eta_2
+
+		// published s0 uncertainty too large - s0 can become negative
+		par_unc(1) = 0.;
 
 		double corr_data[] = {
-			1, 0, 0, 0, 0, 0,
-			0, 1, 0, 0, 0, 0,
-			0, 0, 1, 0, 0, 0,
-			0, 0, 0, 1, 0, 0,
-			0, 0, 0, 0, 1, 0,
-			0, 0, 0, 0, 0, 1
+			100, 99.3, 99.5, -11, -96.9, -11.5,
+			99.3, 100, 98.1, -12.1, -99.1, -12.5,
+			99.5, 98.1, 100, -6.27, -94.7, -6.81,
+			-11, -12.1, -6.27, 100, 15.5, 98.8,
+			-96.9, -99.1, -94.7, 15.5, 100, 15.9,
+			-11.5, -12.5, -6.81, 98.8, 15.9, 100
 		};
 		par_unc_corr.ResizeTo(par_unc.GetNrows(), par_unc.GetNrows());
 		par_unc_corr.SetMatrixArray(corr_data);

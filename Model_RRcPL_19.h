@@ -30,20 +30,20 @@ class Model_RRcPL_19 : public Model
 
 		par_unc.ResizeTo(6);
  
-		par_unc(0) = 0;	// Z_pp
-		par_unc(1) = 0;	// B_pp
-		par_unc(2) = 0;	// Y_1_pp
-		par_unc(3) = 0;	// Y_2_pip
-		par_unc(4) = 0;	// eta_1
-		par_unc(5) = 0;	// eta_2  
+		par_unc(0) = 3.8940536;	// Z_pp
+		par_unc(1) = 0.24508299;	// B_pp
+		par_unc(2) = 3.1559926;	// Y_1_pp
+		par_unc(3) = 0.19714977;	// Y_2_pip
+		par_unc(4) = 0.0091272007;	// eta_1
+		par_unc(5) = 0.0069818493;	// eta_2  
 
 		double corr_data[] = {
-			1, 0, 0, 0, 0, 0,
-			0, 1, 0, 0, 0, 0,
-			0, 0, 1, 0, 0, 0,
-			0, 0, 0, 1, 0, 0,
-			0, 0, 0, 0, 1, 0,
-			0, 0, 0, 0, 0, 1
+			100, -99.6, -98.7, 14.6, 98.3, 14.1,
+			-99.6, 100, 99.6, -12.7, -96.3, -12.4,
+			-98.7, 99.6, 100, -6.94, -94.2, -6.97,
+			14.6, -12.7, -6.94, 100, 20.8, 98.5,
+			98.3, -96.3, -94.2, 20.8, 100, 20,
+			14.1, -12.4, -6.97, 98.5, 20, 100
 		};
 		par_unc_corr.ResizeTo(par_unc.GetNrows(), par_unc.GetNrows());
 		par_unc_corr.SetMatrixArray(corr_data);
