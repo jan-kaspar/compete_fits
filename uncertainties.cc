@@ -7,6 +7,7 @@
 
 #include "TFile.h"
 #include "TGraph.h"
+#include "TH2D.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ void ProcessOneModel(Model *model)
 {
 	// settings
 	// TODO: 1E5
-	unsigned int n_error_samples = 10000;
+	unsigned int n_error_samples = (unsigned int) 1E3;
 
 	unsigned int si_for_corr = 194;
 
@@ -34,6 +35,7 @@ void ProcessOneModel(Model *model)
 	vector<Stat> stat_rho_p_ap(values_W.size(), Stat(1));
 
 	TGraph *g_de_rho_p_p_vs_de_si_p_p = new TGraph();
+	TH2D *h_de_rho_p_p_vs_de_si_p_p = new TH2D("", ";#Delta#sigma_{pp}   (mb);#Delta#rho_{pp}", 100, -20., +20., 100, -0.02, +0.02);
 	
 	for (unsigned int ci = 0; ci < n_error_samples; ci++)
 	{
@@ -80,6 +82,7 @@ void ProcessOneModel(Model *model)
 		// fill in correlation plots
 		int idx = g_de_rho_p_p_vs_de_si_p_p->GetN();
 		g_de_rho_p_p_vs_de_si_p_p->SetPoint(idx, v_si_p_p[si_for_corr], v_rho_p_p[si_for_corr]);
+		h_de_rho_p_p_vs_de_si_p_p->Fill(v_si_p_p[si_for_corr], v_rho_p_p[si_for_corr]);
 	}
 
 	// make graphs
@@ -136,6 +139,7 @@ void ProcessOneModel(Model *model)
 	TDirectory *d_top = gDirectory;
 
 	g_de_rho_p_p_vs_de_si_p_p->Write("g_de_rho_p_p_vs_de_si_p_p");
+	h_de_rho_p_p_vs_de_si_p_p->Write("h_de_rho_p_p_vs_de_si_p_p");
 
 	gDirectory = d_top->mkdir("si_p_p");
 	gs_si_p_p.Write();

@@ -57,7 +57,8 @@ for (int mi : models.keys)
 	yaxis(XEquals(13e3, false), dashed);
 
 	NewPad("$\De\si_{\rm pp}\ung{mb}$", "$\De \rh_{\rm pp}$");
-	draw(RootGetObject(f, models[mi] + "/g_de_rho_p_p_vs_de_si_p_p"), "d", heavygreen);
+	draw(RootGetObject(f, models[mi] + "/h_de_rho_p_p_vs_de_si_p_p"), "def");
+	limits((-10, -0.005), (+10, +0.005), Crop);
 
 	NewPad("$\sqrt s\ung{GeV}$", "uncertainty band for $\si_{\rm pp}\ung{mb}$");
 	scale(Log, Linear);
