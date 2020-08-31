@@ -4,29 +4,39 @@ import pad_layout;
 string f = "../uncertainties.root";
 
 string models[];
-//models.push("Model_RRdPL2_20");
-//models.push("Model_RRdPL2u_17");
-//models.push("Model_RRdPL2u_19");
-//models.push("Model_RRdPqcL2u_16");
-models.push("Model_RqcRcL2qc_12");
-//models.push("Model_RqcRcLqc_12");
-//models.push("Model_RqcRLqc_14");
-//models.push("Model_RRcdPL2u_15");
-//models.push("Model_RRcdPqcL2u_14");
-models.push("Model_RRcL2qc_15");
-models.push("Model_RRcLqc_15");
-models.push("Model_RRcPL_19");
-//models.push("Model_RRL_18");
-//models.push("Model_RRLnf_19");
-models.push("Model_RRL2_18");
-models.push("Model_RRL2qc_17");
-//models.push("Model_RRLqc_17");
-//models.push("Model_RRPEu_19");
-//models.push("Model_RRPL_21");
-//models.push("Model_RRPL2_20");
-models.push("Model_RRPL2qc_18");
-//models.push("Model_RRPL2u_19");
-models.push("Model_RRPnfL2u_21");
+
+// blue
+models.push("Model_RRdPL2_20");
+models.push("Model_RRdPL2u_17");
+models.push("Model_RRdPL2u_19");
+models.push("Model_RRdPqcL2u_16");
+models.push("Model_RRcdPL2u_15");
+models.push("Model_RRcdPqcL2u_14");
+models.push("Model_RRPL2u_19");
+models.push("Model_RRPnfL2u_21");	// DONE
+
+// blue dashed
+models.push("Model_RRPEu_19");
+
+// magenta
+models.push("Model_RqcRcL2qc_12");	// DONE
+models.push("Model_RRcL2qc_15");	// DONE
+models.push("Model_RRL2_18");		// DONE
+models.push("Model_RRL2qc_17");		// DONE
+
+// green
+models.push("Model_RqcRcLqc_12");	// DONE
+models.push("Model_RqcRLqc_14");
+models.push("Model_RRL_18");		// DONE
+models.push("Model_RRLnf_19");
+models.push("Model_RRLqc_17");		// DONE
+models.push("Model_RRPL_21");
+models.push("Model_RRcLqc_15");		// DONE
+models.push("Model_RRcPL_19");		// DONE
+
+// green dashed
+models.push("Model_RRPL2_20");
+models.push("Model_RRPL2qc_18");	// DONE
 
 //----------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------
@@ -35,6 +45,8 @@ TGraph_x_max = 50e3;
 
 for (int mi : models.keys)
 {
+	write("* " + models[mi]);
+
 	NewRow();
 
 	NewPad(false);

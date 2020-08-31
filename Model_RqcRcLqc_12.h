@@ -11,7 +11,7 @@ class Model_RqcRcLqc_12 : public Model
 	double eta_1;
 	double eta_2;
 
-	virtual void SetDefaultParameterValues()
+	virtual void SetDefaultParameterValues() override
 	{
 		B = 0.75953082;
 		s0 = 118.96503;
@@ -30,20 +30,20 @@ class Model_RqcRcLqc_12 : public Model
 
 		par_unc.ResizeTo(6);
  
-		par_unc(0) = 0;	// B
-		par_unc(1) = 0;	// s0
-		par_unc(2) = 0;	// Y_1_pp
-		par_unc(3) = 0;	// Y_2_pip
-		par_unc(4) = 0;	// eta_1
-		par_unc(5) = 0;	// eta_2
+		par_unc(0) = 0.035286641;	// B
+		par_unc(1) = 66.907454;		// s0
+		par_unc(2) = 0.46524013;	// Y_1_pp
+		par_unc(3) = 0.32958166;	// Y_2_pip
+		par_unc(4) = 0.011790959;	// eta_1
+		par_unc(5) = 0.0094903965;	// eta_2
 
 		double corr_data[] = {
-			1, 0, 0, 0, 0, 0,
-			0, 1, 0, 0, 0, 0,
-			0, 0, 1, 0, 0, 0,
-			0, 0, 0, 1, 0, 0,
-			0, 0, 0, 0, 1, 0,
-			0, 0, 0, 0, 0, 1
+			100, 99.3, 99.6, -11.6, -97.2, -12,
+			99.3, 100, 98.4, -12.6, -99.2, -13.1,
+			99.6, 98.4, 100, -7.33, -95.4, -7.86,
+			-11.6, -12.6, -7.33, 100, 15.8, 98.8,
+			-97.2, -99.2, -95.4, 15.8, 100, 16.2,
+			-12, -13.1, -7.86, 98.8, 16.2, 100
 		};
 		par_unc_corr.ResizeTo(par_unc.GetNrows(), par_unc.GetNrows());
 		par_unc_corr.SetMatrixArray(corr_data);
@@ -60,7 +60,8 @@ class Model_RqcRcLqc_12 : public Model
 		eta_1   += de(4);
 		eta_2   += de(5);
 
-		return true;
+		// TODO: published s0 uncertainty too large
+		return (fabs(de(1)) < 1.7 * par_unc(1));
 	}
 
 	double si_p_p(double s) const override

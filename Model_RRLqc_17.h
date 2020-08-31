@@ -30,20 +30,20 @@ class Model_RRLqc_17 : public Model
 
 		par_unc.ResizeTo(6);
  
-		par_unc(0) = 0;	// B
-		par_unc(1) = 0;	// s0
-		par_unc(2) = 0;	// Y_1_pp
-		par_unc(3) = 0;	// Y_2_pp
-		par_unc(4) = 0;	// eta_1
-		par_unc(5) = 0;	// eta_2 
+		par_unc(0) = 0.024365587;	// B
+		par_unc(1) = 30.21895;	// s0
+		par_unc(2) = 2.8112491;	// Y_1_pp
+		par_unc(3) = 0.9540322;	// Y_2_pp
+		par_unc(4) = 0.0079921224;	// eta_1
+		par_unc(5) = 0.0063104218;	// eta_2 
 
 		double corr_data[] = {
-			1, 0, 0, 0, 0, 0,
-			0, 1, 0, 0, 0, 0,
-			0, 0, 1, 0, 0, 0,
-			0, 0, 0, 1, 0, 0,
-			0, 0, 0, 0, 1, 0,
-			0, 0, 0, 0, 0, 1
+			100, 99.3, 99.6, -20.3, -97.2, -19.6,
+			99.3, 100, 98.6, -21.9, -99.2, -20.9,
+			99.6, 98.6, 100, -14.4, -95.7, -14.4,
+			-20.3, -21.9, -14.4, 100, 26.6, 97.4,
+			-27.2, -99.2, -95.7, 26.6, 100, 25.1,
+			-19.6, -20.9, -14.4, 97.4, 25.1, 100
 		};
 		par_unc_corr.ResizeTo(par_unc.GetNrows(), par_unc.GetNrows());
 		par_unc_corr.SetMatrixArray(corr_data);
@@ -60,7 +60,8 @@ class Model_RRLqc_17 : public Model
 		eta_1  += de(4);
 		eta_2  += de(5);
 
-		return true;
+		// TODO: published s0 uncertainty too large
+		return (fabs(de(1)) < 2.6 * par_unc(1));
 	}
 
 	double si_p_p(double s) const override

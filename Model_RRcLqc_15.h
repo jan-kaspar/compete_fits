@@ -37,9 +37,6 @@ class Model_RRcLqc_15 : public Model
 		par_unc(4) = 0.011453586;	// eta_1
 		par_unc(5) = 0.0095010532;	// eta_2
 
-		// published s0 uncertainty too large - s0 can become negative
-		par_unc(1) = 0.;
-
 		double corr_data[] = {
 			100, 99.3, 99.5, -11, -96.9, -11.5,
 			99.3, 100, 98.1, -12.1, -99.1, -12.5,
@@ -63,7 +60,8 @@ class Model_RRcLqc_15 : public Model
 		eta_1   += de(4);
 		eta_2   += de(5);
 
-		return true;
+		// TODO: published s0 uncertainty too large
+		return (fabs(de(1)) < 1.5 * par_unc(1));
 	}
 
 	double si_p_p(double s) const override

@@ -37,9 +37,6 @@ class Model_RqcRcL2qc_12 : public Model
 		par_unc(4) = 0.12274107;	// Y_1_pp
 		par_unc(5) = 0.42528539;	// Y_2_pip
 
-		// TODO: published uncertainty too large
-		//par_unc(3) = 0.;
-
 		double corr_data[] = {
 			100., 24., -90.8, -93.8, 75., 23.4,
 			24., 100., -10.9, -12.1, 46.6, 99.,
@@ -63,7 +60,8 @@ class Model_RqcRcL2qc_12 : public Model
 		Y_1_pp += de(4);
 		Y_2_pip += de(5);
 
-		return (s0 > 1E-4);
+		// TODO: published s0 uncertainty too large
+		return (fabs(de(3)) < 1.8 * par_unc(3));
 	}
 
 	double si_p_p(double s) const override

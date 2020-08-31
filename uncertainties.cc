@@ -170,29 +170,38 @@ int main()
 {
 	// define models
 	vector<Model *> models;
-	//models.push_back(new Model_RRdPL2_20);
-	//models.push_back(new Model_RRdPL2u_17);
-	//models.push_back(new Model_RRdPL2u_19);
-	//models.push_back(new Model_RRdPqcL2u_16);
+	// blue
+	models.push_back(new Model_RRdPL2_20);
+	models.push_back(new Model_RRdPL2u_17);
+	models.push_back(new Model_RRdPL2u_19);
+	models.push_back(new Model_RRdPqcL2u_16);
+	models.push_back(new Model_RRcdPL2u_15);
+	models.push_back(new Model_RRcdPqcL2u_14);
+	models.push_back(new Model_RRPL2u_19);
+	models.push_back(new Model_RRPnfL2u_21);
+
+	// blue dashed
+	models.push_back(new Model_RRPEu_19);
+
+	// magenta
 	models.push_back(new Model_RqcRcL2qc_12);
-	//models.push_back(new Model_RqcRcLqc_12);
-	//models.push_back(new Model_RqcRLqc_14);
-	//models.push_back(new Model_RRcdPL2u_15);
-	//models.push_back(new Model_RRcdPqcL2u_14);
 	models.push_back(new Model_RRcL2qc_15);
-	models.push_back(new Model_RRcLqc_15);
-	models.push_back(new Model_RRcPL_19);
-	//models.push_back(new Model_RRL_18);
-	//models.push_back(new Model_RRLnf_19);
 	models.push_back(new Model_RRL2_18);
 	models.push_back(new Model_RRL2qc_17);
-	//models.push_back(new Model_RRLqc_17);
-	//models.push_back(new Model_RRPEu_19);
-	//models.push_back(new Model_RRPL_21);
-	//models.push_back(new Model_RRPL2_20);
+
+	// green
+	models.push_back(new Model_RqcRcLqc_12);
+	models.push_back(new Model_RqcRLqc_14);
+	models.push_back(new Model_RRL_18);
+	models.push_back(new Model_RRLnf_19);
+	models.push_back(new Model_RRLqc_17);
+	models.push_back(new Model_RRPL_21);
+	models.push_back(new Model_RRcLqc_15);
+	models.push_back(new Model_RRcPL_19);
+
+	// green dashed
+	models.push_back(new Model_RRPL2_20);
 	models.push_back(new Model_RRPL2qc_18);
-	//models.push_back(new Model_RRPL2u_19);
-	models.push_back(new Model_RRPnfL2u_21);
 
 	// prepare output file
 	TFile *f_out = TFile::Open("uncertainties.root", "recreate");
